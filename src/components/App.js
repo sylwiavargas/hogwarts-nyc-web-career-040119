@@ -15,15 +15,26 @@ class App extends Component {
     // console.log(evt);
     // console.log(evt.target);
     // console.log(evt.target.value);
-    let filteredHogs = hogs;
-    if (evt.target.value === 'greased') {
-      filteredHogs = hogs.filter(hog => hog.greased === true)
-    } else if (evt.target.value === 'non-greased') {
-      filteredHogs = hogs.filter(hog => hog.greased === false)
-    }
+    // if (evt.target.value === 'greased') {
+    //   filteredHogs = hogs.filter(hog => hog.greased === true)
+    // } else if (evt.target.value === 'non-greased') {
+    //   filteredHogs = hogs.filter(hog => hog.greased === false)
+    // }
+    let filteredHogs = this.filterHogs(evt);
     this.setState({
       filteredHogs
     }/*, () => console.log('app state', this.state)*/)
+  }
+
+  filterHogs = evt => {
+    // console.log(evt.target.value);
+    if (evt.target.value === 'greased') {
+      return hogs.filter(hog => hog.greased === true)
+    } else if (evt.target.value === 'non-greased') {
+      return hogs.filter(hog => hog.greased === false)
+    } else {
+      return hogs
+    }
   }
 
   render() {
@@ -31,7 +42,7 @@ class App extends Component {
     return (
       <div className="App">
         < Nav />
-      < Filter onFilterChange={this.onFilterChange}/>
+      < Filter onFilterChange={this.onFilterChange} />
       < HogContainer hogs={this.state.filteredHogs} />
       </div>
     )

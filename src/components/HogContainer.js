@@ -8,13 +8,6 @@ export default class HogContainer extends Component {
     sortBy: 'name'
   }
 
-  onSortChange = evt => {
-    // console.log(evt.target.value);
-    this.setState({
-      sortBy: evt.target.value
-    })
-  }
-
   // sortHogsByName = hogs => {
   //   return hogs.sort((hog1, hog2) => hog1.name.localeCompare(hog2.name))
   // }
@@ -23,22 +16,37 @@ export default class HogContainer extends Component {
   //   return hogs.sort((hog1, hog2) => hog2.weight - hog1.weight)
   // }
 
-  sortAndRenderHogs = () => {
-    const hogs = this.props.hogs
-    const sortedHogs = this.state.sortBy === 'name'
-            ? hogs.sort((hog1, hog2) => hog1.name.localeCompare(hog2.name))
-            : hogs.sort((hog1, hog2) => hog2.weight - hog1.weight)
-                  // ? this.sortHogsByName(hogs)
-                  // : this.sortHogsByWeight(hogs)
-    // console.log(this.state.filteredHogs);
-    // console.log(this.props.hogs);
-    // console.log(hogs, sortedHogs);
-    // console.log(sortedHogs);
-    return this.renderHogCards(sortedHogs);
+  // sortAndRenderHogs = () => {
+  //   const hogs = this.props.hogs
+  //   const sortedHogs = this.state.sortBy === 'name'
+  //           ? hogs.sort((hog1, hog2) => hog1.name.localeCompare(hog2.name))
+  //           : hogs.sort((hog1, hog2) => hog2.weight - hog1.weight)
+  //                 // ? this.sortHogsByName(hogs)
+  //                 // : this.sortHogsByWeight(hogs)
+  //   // console.log(this.state.filteredHogs);
+  //   // console.log(this.props.hogs);
+  //   // console.log(hogs, sortedHogs);
+  //   // console.log(sortedHogs);
+  //   return this.renderHogCards(sortedHogs);
+  // }
+
+  onSortChange = evt => {
+    // console.log(evt.target.value);
+    this.setState({
+      sortBy: evt.target.value
+    })
   }
 
-  renderHogCards = hogs => {
-    return hogs.map((hog, i) => {
+  sortHogs = () => {
+    const hogs = this.props.hogs
+    return this.state.sortBy === 'name'
+            ? hogs.sort((hog1, hog2) => hog1.name.localeCompare(hog2.name))
+            : hogs.sort((hog1, hog2) => hog2.weight - hog1.weight)
+  }
+
+  renderHogCards = () => {
+    const sortedHogs = this.sortHogs()
+    return sortedHogs.map((hog, i) => {
       return < HogCard key={i}
       hog={hog} />
     })
@@ -50,7 +58,7 @@ export default class HogContainer extends Component {
     return (
       <div>
         < Sort onSortChange={this.onSortChange}/>
-        {this.sortAndRenderHogs()}
+        {this.renderHogCards()}
       </div>
     )
   }
