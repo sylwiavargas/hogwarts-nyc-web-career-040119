@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Filter extends Component {
+const Filter = props => {
 
-  render() {
-    console.log('filter props', this.props);
+  // render() {
+    // console.log('filter props', this.props);
     return (
       <div>
         <label>Filter: </label>
-        <select onChange={this.props.onFilterChange}>
+        <select onChange={props.onFilterChange}>
           <option value={'all'}>All Hogs</option>
           <option value={'greased'}>Greased Hogs</option>
           <option value={'non-greased'}>Non-greased Hogs</option>
@@ -16,4 +16,6 @@ export default class Filter extends Component {
     )
   }
 
-}
+// }
+
+export default Filter

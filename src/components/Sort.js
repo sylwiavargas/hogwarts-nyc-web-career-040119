@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Sort extends Component {
+const Sort = props => {
 
-  render() {
-    console.log('filter props', this.props);
+  // render() {
+    // console.log('filter props', this.props);
     return (
       <div>
         <label>Sort By: </label>
-        <select onChange={this.props.onSortChange}>
+        <select onChange={props.onSortChange}>
           <option value={'name'}>Name</option>
           <option value={'weight'}>Weight</option>
         </select>
@@ -15,4 +15,5 @@ export default class Sort extends Component {
     )
   }
 
-}
+// }
+ export default Sort

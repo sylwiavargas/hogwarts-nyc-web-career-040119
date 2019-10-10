@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class HogContainer extends Component {
+export default class HogCard extends Component {
 
   // getImgUrl = name => {
   //   let url = name.split(' ').join('_').toLowerCase();
@@ -11,6 +11,12 @@ export default class HogContainer extends Component {
 
   state = {
     clicked: false
+  }
+
+  onHogCardClick = () => {
+    this.setState({
+      clicked: !this.state.clicked
+    }/*, () => console.log(this.state.clicked)*/)
   }
 
   displayHogDetails = () => {
@@ -28,26 +34,18 @@ export default class HogContainer extends Component {
     }
   }
 
-  onHogCardClick = () => {
-    this.setState({
-      clicked: !this.state.clicked
-    }/*, () => console.log(this.state.clicked)*/)
-  }
-
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     // console.log(this.props.onHogCardClick);
-    const { name, weight, specialty, greased, 'highest medal achieved': highestMedalAchieved } = this.props.hog
-    console.log(name, weight, specialty, greased, highestMedalAchieved);
+    const { name } = this.props.hog
+    // console.log(name, weight, specialty, greased, highestMedalAchieved);
     return (
       <div>
         <p>{name}</p>
-        <img src={require(`../hog-imgs/${name.split(' ').join('_').toLowerCase()}.jpg`)} alt="pig image" onClick={this.onHogCardClick}/>
+        <img src={require(`../hog-imgs/${name.split(' ').join('_').toLowerCase()}.jpg`)} alt="hog" onClick={this.onHogCardClick}/>
         { this.displayHogDetails() }
       </div>
     )
   }
-
-
 
 }
