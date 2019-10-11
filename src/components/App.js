@@ -28,6 +28,17 @@ class App extends Component {
 
   filterHogs = evt => {
     // console.log(evt.target.value);
+    
+    // const value = evt.target.value 
+    // switch (value) {
+    // case 'greased':
+    //  return hogs.filter(hog => hog.greased === true)
+    // case 'non-greased':
+    //  hogs.filter(hog => hog.greased === false)
+    //    default:
+    //  return hogs;
+    // }
+    
     if (evt.target.value === 'greased') {
       return hogs.filter(hog => hog.greased === true)
     } else if (evt.target.value === 'non-greased') {
