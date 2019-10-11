@@ -15,19 +15,19 @@ class App extends Component {
     // console.log(evt);
     // console.log(evt.target);
     // console.log(evt.target.value);
-    let filteredHogs = hogs;
+    let filteredHogs;
     if (evt.target.value === 'greased') {
       filteredHogs = filteredHogs.filter(hog => hog.greased === true)
     } else if (evt.target.value === 'non-greased') {
       filteredHogs = filteredHogs.filter(hog => hog.greased === false)
     }
     this.setState({
-      filteredHogs
+      filteredHogs = hogs;
     }/*, () => console.log('app state', this.state)*/)
   }
 
   onSortChange = evt => {
-    console.log(evt.target.value);
+    console.log("on sort change value here", evt.target.value);
     this.setState({
       sortBy: evt.target.value
     })
